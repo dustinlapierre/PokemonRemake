@@ -9,10 +9,19 @@ public class BattleHud : MonoBehaviour
     [SerializeField] Text levelText;
     [SerializeField] HPBar hpBar;
 
+    Pokemon _pokemon;
+
     public void SetData(Pokemon pokemon)
     {
-        nameText.text = pokemon.Base.Name;
-        levelText.text = "Lvl " + pokemon.Level;
-        hpBar.SetHP((float) pokemon.HP / pokemon.MaxHP);
+        _pokemon = pokemon;
+
+        nameText.text = _pokemon.Base.Name;
+        levelText.text = "Lvl " + _pokemon.Level;
+        hpBar.SetHP((float) _pokemon.HP / _pokemon.MaxHP);
+    }
+
+    public IEnumerator UpdateHP()
+    {
+        yield return hpBar.SetHPSmooth((float) _pokemon.HP / _pokemon.MaxHP);
     }
 }
