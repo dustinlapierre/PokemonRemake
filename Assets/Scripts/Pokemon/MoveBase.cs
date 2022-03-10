@@ -11,6 +11,7 @@ public class MoveBase : ScriptableObject
     [SerializeField] string description;
 
     [SerializeField] PokemonType type;
+    [SerializeField] bool isSpecial;
     [SerializeField] int power;
     [SerializeField] int accuracy;
     [SerializeField] int pp;
@@ -19,6 +20,7 @@ public class MoveBase : ScriptableObject
     public string Description { get => description; }
     public string Name { get => name; }
     public PokemonType Type { get => type; }
+    public bool IsSpecial { get => isSpecial; }
     public int Power { get => power; }
     public int Accuracy { get => accuracy; }
     public int PP { get => pp; }
