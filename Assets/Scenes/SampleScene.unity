@@ -4498,8 +4498,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa57b8f749c2a3944ba2c96bc9457a69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _base: {fileID: 11400000, guid: 02169cc31a144a943980c1367b043a01, type: 2}
-  level: 8
   isPlayerUnit: 0
 --- !u!114 &820312757
 MonoBehaviour:
@@ -4788,6 +4786,7 @@ GameObject:
   - component: {fileID: 1152604742}
   - component: {fileID: 1152604744}
   - component: {fileID: 1152604745}
+  - component: {fileID: 1152604746}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -4899,6 +4898,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1152604746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152604741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7960968675ff38e46b5b82594f697fd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  party:
+  - _base: {fileID: 11400000, guid: be5c9260c056ec847a2b5a06b2de38fb, type: 2}
+    level: 10
+  - _base: {fileID: 11400000, guid: 02169cc31a144a943980c1367b043a01, type: 2}
+    level: 5
 --- !u!1 &1190686455
 GameObject:
   m_ObjectHideFlags: 0
@@ -4909,6 +4925,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1190686457}
   - component: {fileID: 1190686456}
+  - component: {fileID: 1190686458}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -4945,6 +4962,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1190686458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1190686455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efec2b6a5da824e4f9eb9060436c5e4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wildPokemon:
+  - _base: {fileID: 11400000, guid: be5c9260c056ec847a2b5a06b2de38fb, type: 2}
+    level: 15
+  - _base: {fileID: 11400000, guid: 02169cc31a144a943980c1367b043a01, type: 2}
+    level: 15
 --- !u!1 &1279709240
 GameObject:
   m_ObjectHideFlags: 0
@@ -5566,7 +5600,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -223, y: -87.2}
+  m_AnchoredPosition: {x: -223, y: -99.1}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1623182232
@@ -5619,8 +5653,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa57b8f749c2a3944ba2c96bc9457a69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _base: {fileID: 11400000, guid: be5c9260c056ec847a2b5a06b2de38fb, type: 2}
-  level: 10
   isPlayerUnit: 1
 --- !u!1 &1630071369
 GameObject:
