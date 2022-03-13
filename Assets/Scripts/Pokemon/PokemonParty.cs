@@ -5,11 +5,16 @@ using UnityEngine;
 
 public class PokemonParty : MonoBehaviour
 {
-    [SerializeField] List<Pokemon> party;
+    [SerializeField] List<Pokemon> pokemon;
+
+    public List<Pokemon> Pokemon
+    {
+        get { return pokemon; }
+    }
 
     private void Start()
     {
-        foreach(var pokemon in party)
+        foreach(var pokemon in pokemon)
         {
             pokemon.Init();
         }
@@ -17,6 +22,6 @@ public class PokemonParty : MonoBehaviour
 
     public Pokemon GetHealthyPokemon()
     {
-        return party.Where(x => x.HP > 0).FirstOrDefault();
+        return pokemon.Where(x => x.HP > 0).FirstOrDefault();
     }
 }

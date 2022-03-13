@@ -19,6 +19,7 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] BattleUnit enemyUnit;
     [SerializeField] BattleHud enemyHud;
     [SerializeField] BattleDialogBox dialogBox;
+    [SerializeField] PartyScreen partyScreen;
 
     //Observer Pattern
     public event Action<bool> OnBattleOver;
@@ -45,6 +46,8 @@ public class BattleSystem : MonoBehaviour
         enemyUnit.Setup(wildPokemon);
         enemyHud.SetData(enemyUnit.Pokemon);
 
+        partyScreen.Init();
+
         dialogBox.SetMoveNames(playerUnit.Pokemon.Moves);
 
         yield return StartCoroutine(dialogBox.TypeDialog($"A wild {enemyUnit.Pokemon.Base.Name} appeared."));
@@ -61,7 +64,8 @@ public class BattleSystem : MonoBehaviour
 
     void OpenPartyScreen()
     {
-        print("Party Screen");
+        partyScreen.SetPartyData(playerParty.Pokemon);
+        partyScreen.gameObject.SetActive(true);
     }
 
     void PlayerMove()

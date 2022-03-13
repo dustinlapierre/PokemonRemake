@@ -64,11 +64,13 @@
     <Compile Include="Assets\Scripts\Battle\HPBar.cs" />
     <Compile Include="Assets\Scripts\Battle\BattleDialogBox.cs" />
     <Compile Include="Assets\Scripts\Battle\BattleUnit.cs" />
+    <Compile Include="Assets\Scripts\Pokemon\PokemonParty.cs" />
     <Compile Include="Assets\Scripts\Battle\BattleSystem.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
-    <Compile Include="Assets\Scripts\Pokemon\MoveBase.cs" />
-    <Compile Include="Assets\Scripts\Pokemon\PokemonParty.cs" />
     <Compile Include="Assets\Scripts\Gameplay\MapArea.cs" />
+    <Compile Include="Assets\Scripts\Pokemon\MoveBase.cs" />
+    <Compile Include="Assets\Scripts\Battle\PartyMemberUI.cs" />
+    <Compile Include="Assets\Scripts\Battle\PartyScreen.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
