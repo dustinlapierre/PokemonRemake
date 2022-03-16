@@ -5793,6 +5793,8 @@ MonoBehaviour:
     level: 8
   - _base: {fileID: 11400000, guid: 02169cc31a144a943980c1367b043a01, type: 2}
     level: 5
+  - _base: {fileID: 11400000, guid: be5c9260c056ec847a2b5a06b2de38fb, type: 2}
+    level: 2
 --- !u!1 &1190686455
 GameObject:
   m_ObjectHideFlags: 0

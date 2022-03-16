@@ -138,14 +138,7 @@ public class BattleSystem : MonoBehaviour
             var nextPokemon = playerParty.GetHealthyPokemon();
             if(nextPokemon != null)
             {
-                playerUnit.Setup(nextPokemon);
-                playerHud.SetData(nextPokemon);
-
-                dialogBox.SetMoveNames(nextPokemon.Moves);
-
-                yield return StartCoroutine(dialogBox.TypeDialog($"Go {nextPokemon.Base.Name}!"));
-
-                PlayerAction();
+                OpenPartyScreen();
             }
             else 
             {
@@ -268,5 +261,57 @@ public class BattleSystem : MonoBehaviour
         currentMember = Mathf.Clamp(currentMember, 0, playerParty.Pokemon.Count - 1);
 
         partyScreen.UpdateMemberSelection(currentMember);
+
+        if(Input.GetKeyDown(KeyCode.Z))
+        {
+            var selectedMember = playerParty.Pokemon[currentMember];
+            if (selectedMember.HP <= 0)
+            {
+                partyScreen.SetMessageText("That Pokemon is not fit for battle!");
+                return;
+            }
+            if(selectedMember == playerUnit.Pokemon)
+            {
+                partyScreen.SetMessageText("That Pokemon is already active!");
+                return;
+            }
+
+            partyScreen.gameObject.SetActive(false);
+            state = BattleState.Busy;
+            StartCoroutine(SwitchPokemon(selectedMember));
+        }
+        else if(Input.GetKey(KeyCode.X))
+        {
+            partyScreen.gameObject.SetActive(false);
+            PlayerAction();
+        }
+    }
+
+    IEnumerator SwitchPokemon(Pokemon newPokemon)
+    {
+        var forceSwap = true;
+
+        if(playerUnit.Pokemon.HP > 0)
+            forceSwap = false;
+
+        if(!forceSwap)
+        {
+            //swap out if pokemon is not fainted
+            yield return dialogBox.TypeDialog($"Come back {playerUnit.Pokemon.Base.Name}.");
+            playerUnit.PlayFaintAnimation();
+            yield return new WaitForSeconds(2f);
+        }
+
+        //swap in
+        playerUnit.Setup(newPokemon);
+        playerHud.SetData(newPokemon);
+        dialogBox.SetMoveNames(newPokemon.Moves);
+        yield return StartCoroutine(dialogBox.TypeDialog($"Go {newPokemon.Base.Name}!"));
+
+        //enemy turn
+        if(!forceSwap)
+            StartCoroutine(EnemyMove());
+        else
+            PlayerAction();
     }
 }
