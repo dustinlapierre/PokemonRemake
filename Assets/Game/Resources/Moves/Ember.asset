@@ -15,7 +15,10 @@ MonoBehaviour:
   name: Ember
   description: 
   type: 2
-  isSpecial: 1
+  category: 1
   power: 40
   accuracy: 100
   pp: 25
+  effects:
+    boosts: []
+  target: 0

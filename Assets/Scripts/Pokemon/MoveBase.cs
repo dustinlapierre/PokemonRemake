@@ -11,17 +11,45 @@ public class MoveBase : ScriptableObject
     [SerializeField] string description;
 
     [SerializeField] PokemonType type;
-    [SerializeField] bool isSpecial;
+    [SerializeField] MoveCategory category;
     [SerializeField] int power;
     [SerializeField] int accuracy;
     [SerializeField] int pp;
+    [SerializeField] MoveEffects effects;
+    [SerializeField] MoveTarget target;
 
     //props
     public string Description { get => description; }
     public string Name { get => name; }
     public PokemonType Type { get => type; }
-    public bool IsSpecial { get => isSpecial; }
+    public MoveCategory Category { get => category; }
     public int Power { get => power; }
     public int Accuracy { get => accuracy; }
     public int PP { get => pp; }
+    public MoveEffects Effects { get => effects; }
+    public MoveTarget Target { get => target; }
+}
+[System.Serializable]
+public class MoveEffects
+{
+    [SerializeField] List<StatBoost> boosts;
+
+    public List<StatBoost> Boosts { get { return boosts; } }
+}
+
+[System.Serializable]
+public class StatBoost
+{
+    public Stat stat;
+    public int boost;
+}
+
+public enum MoveCategory
+{
+    Physical, Special, Status
+}
+
+public enum MoveTarget
+{
+    Foe, Self
 }
