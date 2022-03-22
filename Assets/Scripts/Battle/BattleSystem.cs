@@ -51,12 +51,21 @@ public class BattleSystem : MonoBehaviour
 
         yield return StartCoroutine(dialogBox.TypeDialog($"A wild {enemyUnit.Pokemon.Base.Name} appeared."));
 
-        ActionSelection();
+        ChooseFirstTurn();
+    }
+
+    void ChooseFirstTurn()
+    {
+        if (playerUnit.Pokemon.Speed >= enemyUnit.Pokemon.Speed)
+            ActionSelection();
+        else
+            StartCoroutine(EnemyMove());
     }
 
     void BattleOver(bool won)
     {
         state = BattleState.BattleOver;
+        playerParty.Pokemon.ForEach(p => p.OnBattleOver());
         OnBattleOver(won);
     }
 
@@ -119,14 +128,7 @@ public class BattleSystem : MonoBehaviour
 
         if(move.Base.Category == MoveCategory.Status)
         {
-            var effects = move.Base.Effects;
-            if(effects.Boosts != null)
-            {
-                if(move.Base.Target == MoveTarget.Self)
-                    sourceUnit.Pokemon.ApplyBoosts(effects.Boosts);
-                else
-                    targetUnit.Pokemon.ApplyBoosts(effects.Boosts);
-            }
+            yield return RunMoveEffects(move, sourceUnit.Pokemon, targetUnit.Pokemon);
         }
         else
         {
@@ -142,6 +144,31 @@ public class BattleSystem : MonoBehaviour
             yield return new WaitForSeconds(2f);
 
             CheckForBattleOver(targetUnit);
+        }
+    }
+
+    IEnumerator RunMoveEffects(Move move, Pokemon source, Pokemon target)
+    {
+        var effects = move.Base.Effects;
+        if (effects.Boosts != null)
+        {
+            if (move.Base.Target == MoveTarget.Self)
+                source.ApplyBoosts(effects.Boosts);
+            else
+                target.ApplyBoosts(effects.Boosts);
+        }
+
+        //print any status changes in queue
+        yield return ShowStatusChanges(source);
+        yield return ShowStatusChanges(target);
+    }
+
+    IEnumerator ShowStatusChanges(Pokemon pokemon)
+    {
+        while(pokemon.StatusChanges.Count > 0)
+        {
+            var message = pokemon.StatusChanges.Dequeue();
+            yield return dialogBox.TypeDialog(message);
         }
     }
 
@@ -300,12 +327,11 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator SwitchPokemon(Pokemon newPokemon)
     {
-        var forceSwap = true;
-
+        var currentPokemonFainted = true;
         if(playerUnit.Pokemon.HP > 0)
-            forceSwap = false;
+            currentPokemonFainted = false;
 
-        if(!forceSwap)
+        if(!currentPokemonFainted)
         {
             //swap out if pokemon is not fainted
             yield return dialogBox.TypeDialog($"Come back {playerUnit.Pokemon.Base.Name}.");
@@ -318,10 +344,9 @@ public class BattleSystem : MonoBehaviour
         dialogBox.SetMoveNames(newPokemon.Moves);
         yield return StartCoroutine(dialogBox.TypeDialog($"Go {newPokemon.Base.Name}!"));
 
-        //enemy turn
-        if(!forceSwap)
-            StartCoroutine(EnemyMove());
+        if (currentPokemonFainted)
+            ChooseFirstTurn();
         else
-            ActionSelection();
+            StartCoroutine(EnemyMove());
     }
 }
