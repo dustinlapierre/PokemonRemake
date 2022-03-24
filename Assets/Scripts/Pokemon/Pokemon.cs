@@ -14,6 +14,7 @@ public class Pokemon
     public List<Move> Moves { get; set; }
     public Dictionary<Stat, int> Stats { get; private set;}
     public Dictionary<Stat, int> StatBoosts { get; private set; }
+    public Condition Status { get; private set; }   
     public Queue<string> StatusChanges { get; private set; } = new Queue<string>();
 
 
@@ -149,6 +150,12 @@ public class Pokemon
         }
 
         return damageDetails;
+    }
+
+    public void SetStatus(ConditionID conditionsId)
+    {
+        Status = ConditionsDB.Conditions[conditionsId];
+        StatusChanges.Enqueue($"{Base.Name} {Status.StartMessage}");
     }
 
     public Move GetRandomMove()

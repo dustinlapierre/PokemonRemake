@@ -150,12 +150,20 @@ public class BattleSystem : MonoBehaviour
     IEnumerator RunMoveEffects(Move move, Pokemon source, Pokemon target)
     {
         var effects = move.Base.Effects;
+
+        //Stat Boosting
         if (effects.Boosts != null)
         {
             if (move.Base.Target == MoveTarget.Self)
                 source.ApplyBoosts(effects.Boosts);
             else
                 target.ApplyBoosts(effects.Boosts);
+        }
+
+        //Status Affliction
+        if(effects.Status != ConditionID.none)
+        {
+            target.SetStatus(effects.Status);
         }
 
         //print any status changes in queue

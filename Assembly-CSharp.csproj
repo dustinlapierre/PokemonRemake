@@ -57,20 +57,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Pokemon\Pokemon.cs" />
+    <Compile Include="Assets\Scripts\Battle\PartyScreen.cs" />
     <Compile Include="Assets\Scripts\Battle\BattleHud.cs" />
     <Compile Include="Assets\Scripts\Pokemon\PokemonBase.cs" />
     <Compile Include="Assets\Scripts\Pokemon\Move.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Battle\HPBar.cs" />
     <Compile Include="Assets\Scripts\Battle\BattleDialogBox.cs" />
+    <Compile Include="Assets\Scripts\Battle\PartyMemberUI.cs" />
     <Compile Include="Assets\Scripts\Battle\BattleUnit.cs" />
     <Compile Include="Assets\Scripts\Pokemon\PokemonParty.cs" />
     <Compile Include="Assets\Scripts\Battle\BattleSystem.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\Gameplay\MapArea.cs" />
     <Compile Include="Assets\Scripts\Pokemon\MoveBase.cs" />
-    <Compile Include="Assets\Scripts\Battle\PartyMemberUI.cs" />
-    <Compile Include="Assets\Scripts\Battle\PartyScreen.cs" />
+    <Compile Include="Assets\Scripts\Pokemon\Condition.cs" />
+    <Compile Include="Assets\Scripts\Data\ConditionsDB.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
