@@ -11,7 +11,25 @@ public class ConditionsDB
             new Condition()
             { 
                 Name = "Poison" ,
-                StartMessage = "has been poisoned"
+                StartMessage = "has been poisoned",
+                OnAfterTurn = (Pokemon pokemon) =>
+                {
+                    pokemon.UpdateHP(pokemon.MaxHP / 8);
+                    pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name} is hurt by poison.");
+                }
+            }
+        },
+        {
+            ConditionID.brn,
+            new Condition()
+            {
+                Name = "Burn" ,
+                StartMessage = "has been burned",
+                OnAfterTurn = (Pokemon pokemon) =>
+                {
+                    pokemon.UpdateHP(pokemon.MaxHP / 16);
+                    pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name} is hurt by burn.");
+                }
             }
         }
     };

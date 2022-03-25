@@ -145,6 +145,19 @@ public class BattleSystem : MonoBehaviour
 
             CheckForBattleOver(targetUnit);
         }
+
+        //Status afflictions will affect the Pokemon after their turn
+        sourceUnit.Pokemon.OnAfterTurn();
+        yield return ShowStatusChanges(sourceUnit.Pokemon);
+        yield return sourceUnit.HUD.UpdateHP();
+        if (sourceUnit.Pokemon.HP <= 0)
+        {
+            yield return dialogBox.TypeDialog($"{sourceUnit.Pokemon.Base.Name} Fainted.");
+            sourceUnit.PlayFaintAnimation();
+            yield return new WaitForSeconds(2f);
+
+            CheckForBattleOver(sourceUnit);
+        }
     }
 
     IEnumerator RunMoveEffects(Move move, Pokemon source, Pokemon target)
