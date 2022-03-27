@@ -166,6 +166,14 @@ public class Pokemon
         return Moves[r];
     }
 
+    public bool OnBeforeMove()
+    {
+        if(Status?.OnBeforeMove != null)
+        {
+            return Status.OnBeforeMove(this);
+        }
+        return true;
+    }
     public void OnAfterTurn()
     {
         //take any status afflictions

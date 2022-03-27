@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 679, y: 492}
   m_MaxSize: {x: 14002, y: 14042}
   vertical: 0
-  controlID: 102
+  controlID: 117
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -138,7 +138,7 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 492}
   m_MaxSize: {x: 10001, y: 14042}
   vertical: 1
-  controlID: 103
+  controlID: 118
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -163,7 +163,7 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 221}
   m_MaxSize: {x: 8003, y: 4021}
   vertical: 0
-  controlID: 104
+  controlID: 119
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -548,22 +548,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/Pokemon
+    - Assets/Game/Resources/Pokemon
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts/Pokemon
+  - Assets/Game/Resources/Pokemon
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\dooms\Desktop\UnityProjects\PokemonRemake
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 100}
-    m_SelectedIDs: 54520000
-    m_LastClickedID: 21076
-    m_ExpandedIDs: 000000002452000026520000285200002a52000036520000
+    scrollPos: {x: 0, y: 31}
+    m_SelectedIDs: 48520000
+    m_LastClickedID: 21064
+    m_ExpandedIDs: 000000002452000026520000285200002a5200003a520000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -616,8 +616,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 1a090000
-    m_LastClickedInstanceID: 2330
+    m_SelectedInstanceIDs: 98440000
+    m_LastClickedInstanceID: 17560
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c62300008a4f0000de630000825d000000000000
     m_RenameOverlay:
@@ -730,7 +730,7 @@ MonoBehaviour:
     m_CachedPref: 160
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
-  m_LastInspectedObjectInstanceID: 2330
+  m_LastInspectedObjectInstanceID: 17560
   m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_LockTracker:
