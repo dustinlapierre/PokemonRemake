@@ -48,6 +48,28 @@ public class ConditionsDB
                     return true;
                 }
             }
+        },
+        {
+            ConditionID.frz,
+            new Condition()
+            {
+                Name = "Frozen" ,
+                StartMessage = "was frozen solid",
+                OnBeforeMove = (Pokemon pokemon) =>
+                {
+                    if (Random.Range(1, 5) == 1)
+                    {
+                        pokemon.CureStatus();
+                        pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name} thawed out!");
+                        return true;
+                    }
+                    else
+                    {
+                        pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name} is frozen solid!");
+                        return false;
+                    }
+                }
+            }
         }
     };
 }

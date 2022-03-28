@@ -160,6 +160,11 @@ public class Pokemon
         StatusChanges.Enqueue($"{Base.Name} {Status.StartMessage}");
     }
 
+    public void CureStatus()
+    {
+        Status = null;
+    }
+
     public Move GetRandomMove()
     {
         int r = Random.Range(0, Moves.Count);
