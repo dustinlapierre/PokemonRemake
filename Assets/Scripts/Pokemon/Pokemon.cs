@@ -18,6 +18,7 @@ public class Pokemon
     public Condition Status { get; private set; }   
     public Queue<string> StatusChanges { get; private set; } = new Queue<string>();
     public bool HPChanged { get; set; }
+    public event System.Action OnStatusChanged;
 
 
     public void Init()
@@ -48,7 +49,8 @@ public class Pokemon
         Stats.Add(Stat.SpAttack, Mathf.FloorToInt((Base.SpAttack * Level) / 100f) + 5);
         Stats.Add(Stat.SpDefense, Mathf.FloorToInt((Base.SpDefense * Level) / 100f) + 5);
         Stats.Add(Stat.Speed, Mathf.FloorToInt((Base.Speed * Level) / 100f) + 5);
-        MaxHP = Mathf.FloorToInt((Base.MaxHP * Level) / 100f) + 10;
+
+        MaxHP = Mathf.FloorToInt((Base.MaxHP * Level) / 100f) + 10 + Level;
     }
 
     void ResetStatBoost()
@@ -157,14 +159,18 @@ public class Pokemon
 
     public void SetStatus(ConditionID conditionsId)
     {
+        if (Status != null) return;
+
         Status = ConditionsDB.Conditions[conditionsId];
         Status?.OnStart?.Invoke(this);
         StatusChanges.Enqueue($"{Base.Name} {Status.StartMessage}");
+        OnStatusChanged?.Invoke();
     }
 
     public void CureStatus()
     {
         Status = null;
+        OnStatusChanged?.Invoke();
     }
 
     public Move GetRandomMove()
