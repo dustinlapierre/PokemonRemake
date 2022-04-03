@@ -19,7 +19,8 @@ public class Pokemon
     public Queue<string> StatusChanges { get; private set; } = new Queue<string>();
     public bool HPChanged { get; set; }
     public event System.Action OnStatusChanged;
-
+    public Condition VolatileStatus { get; private set; }
+    public int VolatileStatusTime { get; set; }
 
     public void Init()
     {
@@ -39,6 +40,8 @@ public class Pokemon
         HP = MaxHP;
 
         ResetStatBoost();
+        Status = null;
+        VolatileStatus = null;
     }
 
     void CalculateStats()
@@ -167,10 +170,24 @@ public class Pokemon
         OnStatusChanged?.Invoke();
     }
 
+    public void SetVolatileStatus(ConditionID conditionsId)
+    {
+        if (VolatileStatus != null) return;
+
+        VolatileStatus = ConditionsDB.Conditions[conditionsId];
+        VolatileStatus?.OnStart?.Invoke(this);
+        StatusChanges.Enqueue($"{Base.Name} {VolatileStatus.StartMessage}");
+    }
+
     public void CureStatus()
     {
         Status = null;
         OnStatusChanged?.Invoke();
+    }
+
+    public void CureVolatileStatus()
+    {
+        VolatileStatus = null;
     }
 
     public Move GetRandomMove()
@@ -181,21 +198,33 @@ public class Pokemon
 
     public bool OnBeforeMove()
     {
+        bool canPerformMove = true;
+
         if(Status?.OnBeforeMove != null)
         {
-            return Status.OnBeforeMove(this);
+            if(!Status.OnBeforeMove(this))
+                canPerformMove = false;
         }
-        return true;
+
+        if (VolatileStatus?.OnBeforeMove != null)
+        {
+            if (!VolatileStatus.OnBeforeMove(this))
+                canPerformMove = false;
+        }
+
+        return canPerformMove;
     }
     public void OnAfterTurn()
     {
         //take any status afflictions
         Status?.OnAfterTurn?.Invoke(this);
+        VolatileStatus?.OnAfterTurn?.Invoke(this);
         //question mark will only execute if not null
     }
 
     public void OnBattleOver()
     {
+        VolatileStatus = null;
         ResetStatBoost();
     }
 }
