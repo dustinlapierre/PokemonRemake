@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 678, y: 492}
   m_MaxSize: {x: 14001, y: 14042}
   vertical: 0
-  controlID: 102
+  controlID: 120
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -138,7 +138,7 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 492}
   m_MaxSize: {x: 10001, y: 14042}
   vertical: 1
-  controlID: 103
+  controlID: 121
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -163,7 +163,7 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 221}
   m_MaxSize: {x: 8003, y: 4021}
   vertical: 0
-  controlID: 104
+  controlID: 122
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -548,21 +548,21 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/Battle
+    - Assets/Game/Resources/Moves
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts/Battle
+  - Assets/Game/Resources/Moves
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\dooms\Desktop\UnityProjects\PokemonRemake
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 36}
-    m_SelectedIDs: 36520000
-    m_LastClickedID: 21046
+    scrollPos: {x: 0, y: 31}
+    m_SelectedIDs: 2c520000
+    m_LastClickedID: 21036
     m_ExpandedIDs: 000000000e52000010520000125200001452000020520000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -616,8 +616,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: aa130000
-    m_LastClickedInstanceID: 5034
+    m_SelectedInstanceIDs: 3e440000
+    m_LastClickedInstanceID: 17470
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c62300008a4f0000de630000825d000000000000
     m_RenameOverlay:
