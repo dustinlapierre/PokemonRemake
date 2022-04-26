@@ -388,6 +388,9 @@ public class BattleSystem : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Z))
         {
+            var move = playerUnit.Pokemon.Moves[currentMove];
+            if (move.PP == 0) return;
+
             dialogBox.EnableMoveSelector(false);
             dialogBox.EnableDialogText(true);
             StartCoroutine(RunTurns(BattleAction.Move));
