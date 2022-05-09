@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     public float moveSpeed;
     public LayerMask solidObjectsLayer;
+    public LayerMask interactableLayer;
     public LayerMask grassLayer;
 
     // Observer Pattern
@@ -72,7 +73,7 @@ public class PlayerController : MonoBehaviour
     //check if there is no SolidObject at the target pos
     private bool IsWalkable(Vector3 targetPos)
     {
-        if(Physics2D.OverlapCircle(targetPos, 0.05f, solidObjectsLayer) != null)
+        if(Physics2D.OverlapCircle(targetPos, 0.05f, solidObjectsLayer | interactableLayer) != null)
         {
             return false;
         }
